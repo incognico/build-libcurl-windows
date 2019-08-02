@@ -4,6 +4,17 @@ setlocal EnableDelayedExpansion
 set PROGFILES=%ProgramFiles%
 if not "%ProgramFiles(x86)%" == "" set PROGFILES=%ProgramFiles(x86)%
 
+REM Check if Visual Studio 2019 is installed
+set MSVCDIR="%PROGFILES%\Microsoft Visual Studio\2019"
+set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
+if exist %MSVCDIR% (
+  if exist %VCVARSALLPATH% (
+       set COMPILER_VER="2019"
+        echo Using Visual Studio 2019
+    goto setup_env
+  )
+)
+
 REM Check if Visual Studio 2017 is installed
 set MSVCDIR="%PROGFILES%\Microsoft Visual Studio\2017"
 set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat"
@@ -91,7 +102,7 @@ if exist %MSVCDIR% (
   )
 )
 
-echo No compiler : Microsoft Visual Studio (6, 2005, 2008, 2010, 2012, 2013, 2015 or 2017) is not installed.
+echo No compiler : Microsoft Visual Studio (6, 2005, 2008, 2010, 2012, 2013, 2015, 2017 or 2019) is not installed.
 goto end
 
 :setup_env
@@ -173,6 +184,11 @@ if %COMPILER_VER% == "2015" (
 
 if %COMPILER_VER% == "2017" (
     set VCVERSION = 15
+    goto buildnow
+)
+
+if %COMPILER_VER% == "2019" (
+    set VCVERSION = 16
     goto buildnow
 )
 
