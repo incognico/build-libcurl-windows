@@ -12,7 +12,7 @@ Supported Visual Studio are:
 *  Visual Studio 2015
 *  Visual Studio 2017
 *  Visual Studio 2019
-
+*  Visual Studio 2019 BuildTools
 
 *Note-1*: All version of **Visual Studio express are unsupported**.
 
