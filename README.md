@@ -3,14 +3,6 @@ Auto download & compile libcurl
 This batch script will automatically download the latest libcurl source code and build it using Visual Studio compiler.
 
 Supported Visual Studio are:
-*  Visual C++ 6 (require Windows Server 2003 Platform SDK released in February 2003)
-*  Visual Studio 2005
-*  Visual Studio 2008
-*  Visual Studio 2010
-*  Visual Studio 2012
-*  Visual Studio 2013
-*  Visual Studio 2015
-*  Visual Studio 2017
 *  Visual Studio 2019
 *  Visual Studio 2019 BuildTools
 
@@ -43,37 +35,10 @@ third-party
     │           typecheck-gcc.h
     │
     └───lib
-        ├───dll-debug-x64
-        │       libcurl_debug.dll
-        │       libcurl_debug.lib
-        │       libcurl_debug.pdb
-        │
-        ├───dll-debug-x86
-        │       libcurl_debug.dll
-        │       libcurl_debug.lib
-        │       libcurl_debug.pdb
-        │
         ├───dll-release-x64
         │       libcurl.dll
-        │       libcurl.lib
-        │       libcurl.pdb
         │
-        ├───dll-release-x86
-        │       libcurl.dll
-        │       libcurl.lib
-        │       libcurl.pdb
-        │
-        ├───static-debug-x64
-        │       libcurl_a_debug.lib
-        │
-        ├───static-debug-x86
-        │       libcurl_a_debug.lib
-        │
-        ├───static-release-x64
-        │       libcurl_a.lib
-        │
-        └───static-release-x86
-                libcurl_a.lib
+        └───dll-release-x86
 ```
 
 ## FAQ
