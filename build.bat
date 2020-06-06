@@ -4,8 +4,18 @@ setlocal EnableDelayedExpansion
 set PROGFILES=%ProgramFiles%
 if not "%ProgramFiles(x86)%" == "" set PROGFILES=%ProgramFiles(x86)%
 
-REM Check if Visual Studio 2019 is installed
+REM Check if Visual Studio 2019 BuildTools are installed
 set MSVCDIR="%PROGFILES%\Microsoft Visual Studio\2019"
+set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
+if exist %MSVCDIR% (
+  if exist %VCVARSALLPATH% (
+       set COMPILER_VER="2019"
+        echo Using Visual Studio 2019 BuildTools
+    goto setup_env
+  )
+)
+
+REM Check if Visual Studio 2019 is installed
 set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
 if exist %MSVCDIR% (
   if exist %VCVARSALLPATH% (
@@ -102,7 +112,7 @@ if exist %MSVCDIR% (
   )
 )
 
-echo No compiler : Microsoft Visual Studio (6, 2005, 2008, 2010, 2012, 2013, 2015, 2017 or 2019) is not installed.
+echo No compiler : Microsoft Visual Studio (6, 2005, 2008, 2010, 2012, 2013, 2015, 2017 or 2019 or BuildTools 2019) is installed.
 goto end
 
 :setup_env
@@ -121,7 +131,6 @@ set RM="%CD%\bin\unxutils\rm.exe"
 set CP="%CD%\bin\unxutils\cp.exe"
 set MKDIR="%CD%\bin\unxutils\mkdir.exe"
 set SEVEN_ZIP="%CD%\bin\7-zip\7za.exe"
-set WGET="%CD%\bin\unxutils\wget.exe"
 set XIDEL="%CD%\bin\xidel\xidel.exe"
 
 REM Housekeeping
@@ -140,7 +149,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 
 REM Download latest curl and rename to curl.zip
 echo Downloading latest curl...
-%WGET% "https://curl.haxx.se%url%" -O curl.zip
+curl "https://curl.haxx.se%url%" -O curl.zip
 
 REM Extract downloaded zip file to tmp_libcurl
 %SEVEN_ZIP% x curl.zip -y -otmp_libcurl | FIND /V "ing  " | FIND /V "Igor Pavlov"
