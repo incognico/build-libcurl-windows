@@ -39,6 +39,7 @@ third-party
         │       libcurl.dll
         │
         └───dll-release-x86
+                libcurl.dll
 ```
 
 ## FAQ
