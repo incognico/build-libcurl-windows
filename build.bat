@@ -9,8 +9,7 @@ set MSVCDIR="%PROGFILES%\Microsoft Visual Studio\2019"
 set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
 if exist %MSVCDIR% (
   if exist %VCVARSALLPATH% (
-       set COMPILER_VER="2019"
-        echo Using Visual Studio 2019 BuildTools
+       echo Using Visual Studio 2019 BuildTools
     goto setup_env
   )
 )
@@ -19,8 +18,7 @@ REM Check if Visual Studio 2019 is installed
 set VCVARSALLPATH="%PROGFILES%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
 if exist %MSVCDIR% (
   if exist %VCVARSALLPATH% (
-       set COMPILER_VER="2019"
-        echo Using Visual Studio 2019
+       echo Using Visual Studio 2019
     goto setup_env
   )
 )
@@ -44,12 +42,13 @@ set XIDEL="%CD%\bin\xidel\xidel.exe"
 
 REM Housekeeping
 %RM% -rf tmp_*
+%RM% -rf deps_*
 %RM% -rf third-party
 %RM% -rf curl.zip
 %RM% -rf build_*.txt
 
 REM Get download url .Look under <blockquote><a type='application/zip' href='xxx'>
-REM echo Get download url...
+echo Get download url...
 %XIDEL% https://curl.haxx.se/download.html -e "//a[@type='application/zip' and ends-with(@href, '.zip')]/@href" > tmp_url
 set /p url=<tmp_url
 
@@ -88,7 +87,7 @@ call %VCVARSALLPATH% x86
 cd /d "%ROOT_DIR%\tmp_libcurl\curl-*\winbuild"
 
 echo Compiling dll-release-x86 version...
-nmake /f Makefile.vc mode=dll VC=%VCVERSION% DEBUG=no GEN_PDB=no WITH_DEVEL="%ROOT_DIR%/deps_x86" WITH_ZLIB=static 
+nmake /f Makefile.vc mode=dll VC=%VCVERSION% DEBUG=no GEN_PDB=no WITH_DEVEL="%ROOT_DIR%/deps_x86" WITH_ZLIB=static
 
 call %VCVARSALLPATH% x64
 cd /d "%ROOT_DIR%\tmp_libcurl\curl-*\winbuild"
