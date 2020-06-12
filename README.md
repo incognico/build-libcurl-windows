@@ -2,7 +2,7 @@ Auto download & compile libcurl
 -----------
 This batch script will automatically download the latest libcurl source code and build it using Visual Studio compiler.
 
-libcurl is built with as: **release-dll-zlib-static-ipv6-sspi-winssl-nghttp2-static** and features in `curl_disable.txt` are disabled
+libcurl is with as: **release-dll-zlib-static-ipv6-sspi-winssl-nghttp2-static** and features in `curl_disable.txt` are disabled
 
 Supported Visual Studio are:
 *  Visual Studio 2019
